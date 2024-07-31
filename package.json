@@ -1,0 +1,14 @@
+{
+  "name": "fern",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "swagger-parser": "^10.0.3"
+  }
+}

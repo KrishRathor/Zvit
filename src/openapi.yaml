@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Simple API
+  description: A simple API to demonstrate OpenAPI specification.
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /users:
+    get:
+      summary: List all users
+      operationId: listUsers
+      tags:
+        - Users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      operationId: createUser
+      tags:
+        - Users
+      requestBody:
+        description: User to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid input
+  /users/{id}:
+    get:
+      summary: Get a user by ID
+      operationId: getUserById
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the user to fetch
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+
